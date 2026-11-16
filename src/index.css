@@ -1,0 +1,60 @@
+@import "tailwindcss";
+
+:root {
+  --bg-paper: #F4F1EA;
+  --text-charcoal: #292820;
+  --text-stone: #777469;
+  --surface-beige: #E7E1D5;
+  --border-taupe: #D9D3C8;
+  --accent-olive: #777C61;
+  --accent-terracotta: #AD7961;
+  --surface-white: #FFFFFF;
+}
+
+@layer base {
+  html {
+    background-color: var(--bg-paper);
+    color: var(--text-charcoal);
+    font-family: 'DM Sans', -apple-system, BlinkMacSystemFont, sans-serif;
+    scroll-behavior: smooth;
+    -webkit-font-smoothing: antialiased;
+  }
+
+  body {
+    background-color: var(--bg-paper);
+    color: var(--text-charcoal);
+    margin: 0;
+    min-height: 100vh;
+  }
+
+  h1, h2, h3, h4, .font-display {
+    font-family: 'Plus Jakarta Sans', -apple-system, BlinkMacSystemFont, sans-serif;
+    letter-spacing: -0.02em;
+  }
+
+  .font-mono, code, pre, .tabular-nums {
+    font-variant-numeric: tabular-nums;
+  }
+
+  .font-mono {
+    font-family: 'IBM Plex Mono', ui-monospace, SFMono-Regular, monospace;
+  }
+
+  button, a, input, select, textarea {
+    outline-color: var(--accent-olive);
+  }
+
+  :focus-visible {
+    outline: 2px solid var(--accent-olive);
+    outline-offset: 2px;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  *, *::before, *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
+  }
+}

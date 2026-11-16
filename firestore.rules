@@ -1,0 +1,403 @@
+rules_version = '2';
+
+service cloud.firestore {
+  match /databases/{database}/documents {
+    // Global default-deny safety net
+    match /{document=**} {
+      allow read, write: if false;
+    }
+
+    function isSignedIn() {
+      return request.auth != null;
+    }
+
+    function isVerifiedUser() {
+      return isSignedIn() && request.auth.token.email_verified == true;
+    }
+
+    function isAdmin() {
+      return isVerifiedUser() && (
+        request.auth.token.email == 'dilshaanmuhvp@gmail.com' ||
+        exists(/databases/$(database)/documents/admins/$(request.auth.uid))
+      );
+    }
+
+    function isValidId(id) {
+      return id is string && id.size() >= 1 && id.size() <= 128 && id.matches('^[a-zA-Z0-9_\\-]+$');
+    }
+
+    function incoming() {
+      return request.resource.data;
+    }
+
+    function existing() {
+      return resource.data;
+    }
+
+    function isValidUserProfile(data) {
+      return data.keys().hasAll(['uid', 'displayName', 'role', 'createdAt', 'updatedAt']) &&
+        data.keys().hasOnly(['uid', 'displayName', 'email', 'photoUrl', 'role', 'createdAt', 'updatedAt']) &&
+        isValidId(data.uid) &&
+        data.uid == request.auth.uid &&
+        data.displayName is string && data.displayName.size() >= 1 && data.displayName.size() <= 120 &&
+        (!('email' in data) || (data.email is string && data.email.size() <= 200)) &&
+        (!('photoUrl' in data) || (data.photoUrl is string && data.photoUrl.size() <= 500)) &&
+        data.role in ['learner', 'educator'] &&
+        data.createdAt is timestamp &&
+        data.updatedAt is timestamp;
+    }
+
+    function isValidParticipantSession(data) {
+      return data.keys().hasAll(['sessionId', 'status', 'expiresAt', 'createdAt', 'updatedAt']) &&
+        data.keys().hasOnly(['sessionId', 'nickname', 'status', 'expiresAt', 'createdAt', 'updatedAt']) &&
+        isValidId(data.sessionId) &&
+        (!('nickname' in data) || (data.nickname is string && data.nickname.size() <= 60)) &&
+        data.status in ['active', 'finished', 'expired', 'reset'] &&
+        data.expiresAt is timestamp &&
+        data.createdAt is timestamp &&
+        data.updatedAt is timestamp;
+    }
+
+    function isValidSessionImage(data) {
+      return data.keys().hasAll(['imageId', 'sessionId', 'categoryId', 'storagePath', 'validationStatus', 'createdAt']) &&
+        data.keys().hasOnly(['imageId', 'sessionId', 'categoryId', 'categorySlug', 'storagePath', 'validationStatus', 'createdAt']) &&
+        isValidId(data.imageId) &&
+        isValidId(data.sessionId) &&
+        isValidId(data.categoryId) &&
+        (!('categorySlug' in data) || (data.categorySlug is string && data.categorySlug.size() <= 80)) &&
+        data.storagePath is string && data.storagePath.size() >= 1 && data.storagePath.size() <= 300 &&
+        data.validationStatus in ['validated', 'pending', 'failed', 'deleted'] &&
+        data.createdAt is timestamp;
+    }
+
+    function isValidSessionProject(data) {
+      return data.keys().hasAll(['projectId', 'sessionId', 'name', 'categoryCount', 'imageCount', 'status', 'createdAt', 'updatedAt']) &&
+        data.keys().hasOnly(['projectId', 'sessionId', 'name', 'description', 'categoryCount', 'imageCount', 'status', 'createdAt', 'updatedAt']) &&
+        isValidId(data.projectId) &&
+        isValidId(data.sessionId) &&
+        data.name is string && data.name.size() >= 1 && data.name.size() <= 120 &&
+        (!('description' in data) || (data.description is string && data.description.size() <= 500)) &&
+        data.categoryCount is int && data.categoryCount >= 0 && data.categoryCount <= 100 &&
+        data.imageCount is int && data.imageCount >= 0 && data.imageCount <= 10000 &&
+        data.status in ['draft', 'ready', 'trained'] &&
+        data.createdAt is timestamp &&
+        data.updatedAt is timestamp;
+    }
+
+    function isValidSessionPrediction(data) {
+      return data.keys().hasAll(['predictionId', 'sessionId', 'modelId', 'predictedLabel', 'confidence', 'isUnknown', 'createdAt']) &&
+        data.keys().hasOnly(['predictionId', 'sessionId', 'modelId', 'predictedLabel', 'confidence', 'isUnknown', 'latencyMs', 'createdAt']) &&
+        isValidId(data.predictionId) &&
+        isValidId(data.sessionId) &&
+        isValidId(data.modelId) &&
+        data.predictedLabel is string && data.predictedLabel.size() >= 1 && data.predictedLabel.size() <= 80 &&
+        data.confidence is number && data.confidence >= 0 && data.confidence <= 1 &&
+        data.isUnknown is bool &&
+        (!('latencyMs' in data) || (data.latencyMs is number && data.latencyMs >= 0 && data.latencyMs <= 60000)) &&
+        data.createdAt is timestamp;
+    }
+
+    function isValidSessionFeedback(data) {
+      return data.keys().hasAll(['feedbackId', 'sessionId', 'modelId', 'predictedCategory', 'isCorrect', 'approvedForShared', 'createdAt']) &&
+        data.keys().hasOnly(['feedbackId', 'sessionId', 'modelId', 'predictedCategory', 'isCorrect', 'correctedCategory', 'approvedForShared', 'createdAt']) &&
+        isValidId(data.feedbackId) &&
+        isValidId(data.sessionId) &&
+        isValidId(data.modelId) &&
+        data.predictedCategory is string && data.predictedCategory.size() >= 1 && data.predictedCategory.size() <= 80 &&
+        data.isCorrect is bool &&
+        (!('correctedCategory' in data) || (data.correctedCategory is string && data.correctedCategory.size() <= 80)) &&
+        data.approvedForShared is bool &&
+        data.createdAt is timestamp;
+    }
+
+    function isValidSharedFeedback(data) {
+      return data.keys().hasAll(['sharedFeedbackId', 'modelId', 'predictedCategory', 'predictedConfidence', 'isCorrect', 'status', 'isPublic', 'createdAt', 'updatedAt']) &&
+        data.keys().hasOnly(['sharedFeedbackId', 'modelId', 'predictedCategory', 'predictedConfidence', 'isCorrect', 'correctedCategory', 'status', 'isPublic', 'createdAt', 'updatedAt']) &&
+        isValidId(data.sharedFeedbackId) &&
+        isValidId(data.modelId) &&
+        data.predictedCategory is string && data.predictedCategory.size() >= 1 && data.predictedCategory.size() <= 80 &&
+        data.predictedConfidence is number && data.predictedConfidence >= 0 && data.predictedConfidence <= 1 &&
+        data.isCorrect is bool &&
+        (!('correctedCategory' in data) || (data.correctedCategory is string && data.correctedCategory.size() <= 80)) &&
+        data.status in ['verified', 'applied', 'dismissed'] &&
+        data.isPublic is bool &&
+        data.createdAt is timestamp &&
+        data.updatedAt is timestamp;
+    }
+
+    function isValidSharedModel(data) {
+      return data.keys().hasAll(['modelId', 'name', 'categories', 'datasetSize', 'latestVersion', 'activeVersion', 'accuracy', 'isApproved', 'isPublic', 'createdAt', 'updatedAt']) &&
+        data.keys().hasOnly(['modelId', 'name', 'description', 'categories', 'datasetSize', 'latestVersion', 'activeVersion', 'accuracy', 'precision', 'recall', 'latencyMs', 'isApproved', 'isPublic', 'createdAt', 'updatedAt']) &&
+        isValidId(data.modelId) &&
+        data.name is string && data.name.size() >= 1 && data.name.size() <= 120 &&
+        (!('description' in data) || (data.description is string && data.description.size() <= 400)) &&
+        data.categories is list && data.categories.size() >= 1 && data.categories.size() <= 24 && data.categories[0] is string &&
+        data.datasetSize is int && data.datasetSize >= 0 && data.datasetSize <= 100000 &&
+        data.latestVersion is int && data.latestVersion >= 1 && data.latestVersion <= 1000 &&
+        data.activeVersion is int && data.activeVersion >= 1 && data.activeVersion <= 1000 &&
+        data.accuracy is number && data.accuracy >= 0 && data.accuracy <= 1 &&
+        (!('precision' in data) || (data.precision is number && data.precision >= 0 && data.precision <= 1)) &&
+        (!('recall' in data) || (data.recall is number && data.recall >= 0 && data.recall <= 1)) &&
+        (!('latencyMs' in data) || (data.latencyMs is number && data.latencyMs >= 0 && data.latencyMs <= 60000)) &&
+        data.isApproved is bool &&
+        data.isPublic is bool &&
+        data.createdAt is timestamp &&
+        data.updatedAt is timestamp;
+    }
+
+    function isValidSessionSummary(data) {
+      return data.keys().hasAll(['summaryId', 'sessionId', 'categoriesCreated', 'imagesAdded', 'modelsTested', 'predictionsCount', 'verifiedCorrectCount', 'feedbackSubmittedCount', 'createdAt']) &&
+        data.keys().hasOnly(['summaryId', 'sessionId', 'nickname', 'categoriesCreated', 'imagesAdded', 'modelsTested', 'predictionsCount', 'verifiedCorrectCount', 'feedbackSubmittedCount', 'createdAt']) &&
+        isValidId(data.summaryId) &&
+        isValidId(data.sessionId) &&
+        (!('nickname' in data) || (data.nickname is string && data.nickname.size() <= 60)) &&
+        data.categoriesCreated is int && data.categoriesCreated >= 0 &&
+        data.imagesAdded is int && data.imagesAdded >= 0 &&
+        data.modelsTested is int && data.modelsTested >= 0 &&
+        data.predictionsCount is int && data.predictionsCount >= 0 &&
+        data.verifiedCorrectCount is int && data.verifiedCorrectCount >= 0 &&
+        data.feedbackSubmittedCount is int && data.feedbackSubmittedCount >= 0 &&
+        data.createdAt is timestamp;
+    }
+
+    function isValidEducatorSettings(data) {
+      return data.keys().hasAll(['settingId', 'sessionDurationMinutes', 'autoCleanupOnFinish', 'retainAnonymousFeedback', 'allowSharedModelPromotion', 'maxUploadImagesPerSession', 'isPublic', 'updatedAt']) &&
+        data.keys().hasOnly(['settingId', 'sessionDurationMinutes', 'autoCleanupOnFinish', 'retainAnonymousFeedback', 'allowSharedModelPromotion', 'maxUploadImagesPerSession', 'isPublic', 'updatedAt']) &&
+        isValidId(data.settingId) &&
+        data.sessionDurationMinutes is int && data.sessionDurationMinutes >= 5 && data.sessionDurationMinutes <= 480 &&
+        data.autoCleanupOnFinish is bool &&
+        data.retainAnonymousFeedback is bool &&
+        data.allowSharedModelPromotion is bool &&
+        data.maxUploadImagesPerSession is int && data.maxUploadImagesPerSession >= 5 && data.maxUploadImagesPerSession <= 500 &&
+        data.isPublic is bool &&
+        data.updatedAt is timestamp;
+    }
+
+    function isValidCategory(data) {
+      return data.keys().hasAll(['id', 'name', 'slug', 'targetCount', 'imageCount', 'isBuiltIn', 'isPublic', 'ownerId', 'createdAt', 'updatedAt']) &&
+        data.keys().hasOnly(['id', 'name', 'slug', 'description', 'targetCount', 'imageCount', 'builtInCount', 'userCount', 'autonomousCount', 'isBuiltIn', 'isPublic', 'ownerId', 'createdAt', 'updatedAt']) &&
+        isValidId(data.id) &&
+        data.name is string && data.name.size() >= 1 && data.name.size() <= 80 &&
+        data.slug is string && data.slug.size() >= 1 && data.slug.size() <= 80 && data.slug.matches('^[a-z0-9\\-]+$') &&
+        (!('description' in data) || (data.description is string && data.description.size() <= 400)) &&
+        data.targetCount is int && data.targetCount >= 1 && data.targetCount <= 10000 &&
+        data.imageCount is int && data.imageCount >= 0 && data.imageCount <= 100000 &&
+        data.isBuiltIn is bool &&
+        data.isPublic is bool &&
+        isValidId(data.ownerId) &&
+        data.createdAt is timestamp &&
+        data.updatedAt is timestamp;
+    }
+
+    function isValidDatasetImage(data) {
+      return data.keys().hasAll(['imageId', 'categoryId', 'categorySlug', 'storagePath', 'url', 'source', 'license', 'width', 'height', 'format', 'validationStatus', 'datasetType', 'ownerId', 'isPublic', 'createdAt', 'updatedAt']) &&
+        data.keys().hasOnly(['imageId', 'categoryId', 'categorySlug', 'storagePath', 'thumbnailPath', 'url', 'thumbnailUrl', 'source', 'license', 'width', 'height', 'format', 'sizeBytes', 'sha256', 'phash', 'validationStatus', 'datasetType', 'projectId', 'ownerId', 'isPublic', 'createdAt', 'updatedAt']) &&
+        isValidId(data.imageId) &&
+        isValidId(data.categoryId) &&
+        data.categorySlug is string && data.categorySlug.size() >= 1 && data.categorySlug.size() <= 80 &&
+        data.storagePath is string && data.storagePath.size() >= 1 && data.storagePath.size() <= 300 &&
+        data.url is string && data.url.size() >= 1 && data.url.size() <= 600 &&
+        data.source is string && data.source.size() >= 1 && data.source.size() <= 200 &&
+        data.license is string && data.license.size() >= 1 && data.license.size() <= 120 &&
+        data.width is int && data.width >= 16 && data.width <= 12000 &&
+        data.height is int && data.height >= 16 && data.height <= 12000 &&
+        data.format in ['jpeg', 'jpg', 'png', 'webp'] &&
+        data.validationStatus in ['validated', 'pending', 'failed', 'duplicate'] &&
+        data.datasetType in ['built-in', 'user', 'autonomous'] &&
+        isValidId(data.ownerId) &&
+        data.isPublic is bool &&
+        data.createdAt is timestamp &&
+        data.updatedAt is timestamp;
+    }
+
+    function isValidModelVersion(data) {
+      return data.keys().hasAll(['versionId', 'modelId', 'ownerId', 'isPublic', 'version', 'accuracy', 'testAccuracy', 'isDeployed', 'createdAt', 'updatedAt']) &&
+        data.keys().hasOnly(['versionId', 'modelId', 'ownerId', 'isPublic', 'version', 'accuracy', 'valAccuracy', 'testAccuracy', 'precision', 'recall', 'latencyMs', 'datasetSize', 'isDeployed', 'weightsStoragePath', 'weightsJson', 'createdAt', 'updatedAt']) &&
+        isValidId(data.versionId) &&
+        isValidId(data.modelId) &&
+        isValidId(data.ownerId) &&
+        data.isPublic is bool &&
+        data.version is int && data.version >= 1 && data.version <= 1000 &&
+        data.accuracy is number && data.accuracy >= 0 && data.accuracy <= 1 &&
+        data.testAccuracy is number && data.testAccuracy >= 0 && data.testAccuracy <= 1 &&
+        data.isDeployed is bool &&
+        (!('weightsJson' in data) || (data.weightsJson is string && data.weightsJson.size() <= 500000)) &&
+        data.createdAt is timestamp &&
+        data.updatedAt is timestamp;
+    }
+
+    function isValidLearningActivity(data) {
+      return data.keys().hasAll(['activityId', 'type', 'title', 'detail', 'ownerId', 'isPublic', 'createdAt']) &&
+        data.keys().hasOnly(['activityId', 'type', 'title', 'detail', 'categorySlug', 'ownerId', 'isPublic', 'createdAt']) &&
+        isValidId(data.activityId) &&
+        data.type in ['collection', 'confusion', 'dedup', 'retrain', 'evaluation', 'rollback', 'correction'] &&
+        data.title is string && data.title.size() >= 1 && data.title.size() <= 160 &&
+        data.detail is string && data.detail.size() >= 1 && data.detail.size() <= 500 &&
+        isValidId(data.ownerId) &&
+        data.isPublic is bool &&
+        data.createdAt is timestamp;
+    }
+
+    // Admins registry
+    match /admins/{adminId} {
+      allow get: if isValidId(adminId) && isSignedIn() && request.auth.uid == adminId;
+      allow list, write: if false;
+    }
+
+    // Users (PII strictly isolated to owner or admin; role immutable by client)
+    match /users/{userId} {
+      allow get: if isValidId(userId) && ((isSignedIn() && request.auth.uid == userId) || isAdmin());
+      allow list: if isSignedIn() && resource.data.uid == request.auth.uid;
+      allow create: if isValidId(userId) && isVerifiedUser() && request.auth.uid == userId &&
+        isValidUserProfile(incoming()) &&
+        incoming().role == 'learner' &&
+        incoming().createdAt == request.time &&
+        incoming().updatedAt == request.time;
+      allow update: if isValidId(userId) && isVerifiedUser() && request.auth.uid == userId &&
+        isValidUserProfile(incoming()) &&
+        incoming().uid == existing().uid &&
+        incoming().role == existing().role &&
+        incoming().createdAt == existing().createdAt &&
+        incoming().updatedAt == request.time &&
+        incoming().diff(existing()).affectedKeys().hasOnly(['displayName', 'email', 'photoUrl', 'updatedAt']);
+      allow delete: if false;
+    }
+
+    // Isolated EdEx Participant Sessions (client reads/writes blocked; managed by trusted backend + Educator Admin)
+    match /sessions/{sessionId} {
+      allow get: if isValidId(sessionId) && isAdmin();
+      allow list: if isAdmin();
+      allow create: if isValidId(sessionId) && isAdmin() && isValidParticipantSession(incoming()) &&
+        incoming().createdAt == request.time && incoming().updatedAt == request.time;
+      allow update: if isValidId(sessionId) && isAdmin() && isValidParticipantSession(incoming()) &&
+        incoming().sessionId == existing().sessionId && incoming().createdAt == existing().createdAt &&
+        incoming().updatedAt == request.time;
+      allow delete: if isValidId(sessionId) && isAdmin();
+    }
+
+    match /sessionImages/{imageId} {
+      allow get: if isValidId(imageId) && isAdmin();
+      allow list: if isAdmin();
+      allow create, update, delete: if isValidId(imageId) && isAdmin();
+    }
+
+    match /sessionProjects/{projectId} {
+      allow get: if isValidId(projectId) && isAdmin();
+      allow list: if isAdmin();
+      allow create: if isValidId(projectId) && isAdmin() && isValidSessionProject(incoming()) &&
+        incoming().createdAt == request.time && incoming().updatedAt == request.time;
+      allow update: if isValidId(projectId) && isAdmin() && isValidSessionProject(incoming()) &&
+        incoming().sessionId == existing().sessionId && incoming().createdAt == existing().createdAt &&
+        incoming().updatedAt == request.time;
+      allow delete: if isValidId(projectId) && isAdmin();
+    }
+
+    match /sessionPredictions/{predictionId} {
+      allow get: if isValidId(predictionId) && isAdmin();
+      allow list: if isAdmin();
+      allow create: if isValidId(predictionId) && isAdmin() && isValidSessionPrediction(incoming()) &&
+        incoming().createdAt == request.time;
+      allow update: if false;
+      allow delete: if isValidId(predictionId) && isAdmin();
+    }
+
+    match /sessionFeedback/{feedbackId} {
+      allow get: if isValidId(feedbackId) && isAdmin();
+      allow list: if isAdmin();
+      allow create: if isValidId(feedbackId) && isAdmin() && isValidSessionFeedback(incoming()) &&
+        incoming().createdAt == request.time;
+      allow update: if false;
+      allow delete: if isValidId(feedbackId) && isAdmin();
+    }
+
+    match /sessionSummaries/{summaryId} {
+      allow get: if isValidId(summaryId) && isAdmin();
+      allow list: if isAdmin();
+      allow create: if isValidId(summaryId) && isAdmin() && isValidSessionSummary(incoming()) &&
+        incoming().createdAt == request.time;
+      allow update: if false;
+      allow delete: if isValidId(summaryId) && isAdmin();
+    }
+
+    // Shared De-Identified Feedback (readable if public or admin; protected against tampering)
+    match /sharedFeedback/{sharedFeedbackId} {
+      allow get: if isValidId(sharedFeedbackId) && (existing().isPublic == true || isAdmin());
+      allow list: if resource.data.isPublic == true || isAdmin();
+      allow create: if isValidId(sharedFeedbackId) && isAdmin() && isValidSharedFeedback(incoming()) &&
+        incoming().createdAt == request.time && incoming().updatedAt == request.time;
+      allow update: if isValidId(sharedFeedbackId) && isAdmin() && isValidSharedFeedback(incoming()) &&
+        incoming().createdAt == existing().createdAt && incoming().updatedAt == request.time &&
+        incoming().diff(existing()).affectedKeys().hasOnly(['status', 'isPublic', 'updatedAt']);
+      allow delete: if isValidId(sharedFeedbackId) && isAdmin();
+    }
+
+    // Approved Shared Model Library (publicly readable by participants; admin/evaluation-gated writes only)
+    match /sharedModels/{modelId} {
+      allow get: if isValidId(modelId) && ((existing().isPublic == true && existing().isApproved == true) || isAdmin());
+      allow list: if (resource.data.isPublic == true && resource.data.isApproved == true) || isAdmin();
+      allow create: if isValidId(modelId) && isAdmin() && isValidSharedModel(incoming()) &&
+        incoming().createdAt == request.time && incoming().updatedAt == request.time;
+      allow update: if isValidId(modelId) && isAdmin() && isValidSharedModel(incoming()) &&
+        incoming().modelId == existing().modelId && incoming().createdAt == existing().createdAt &&
+        incoming().updatedAt == request.time;
+      allow delete: if isValidId(modelId) && isAdmin();
+    }
+
+    // Educator Settings (admin-controlled policy; public non-sensitive flags readable)
+    match /educatorSettings/{settingId} {
+      allow get: if isValidId(settingId) && (existing().isPublic == true || isAdmin());
+      allow list: if resource.data.isPublic == true || isAdmin();
+      allow create: if isValidId(settingId) && isAdmin() && isValidEducatorSettings(incoming()) &&
+        incoming().updatedAt == request.time;
+      allow update: if isValidId(settingId) && isAdmin() && isValidEducatorSettings(incoming()) &&
+        incoming().updatedAt == request.time;
+      allow delete: if isValidId(settingId) && isAdmin();
+    }
+
+    // Built-in Categories & Images
+    match /categories/{categoryId} {
+      allow get: if isValidId(categoryId) && (existing().isPublic == true || isAdmin());
+      allow list: if resource.data.isPublic == true || isAdmin();
+      allow create: if isValidId(categoryId) && isAdmin() && isValidCategory(incoming()) &&
+        incoming().createdAt == request.time && incoming().updatedAt == request.time;
+      allow update: if isValidId(categoryId) && isAdmin() && isValidCategory(incoming()) &&
+        incoming().ownerId == existing().ownerId && incoming().createdAt == existing().createdAt &&
+        incoming().updatedAt == request.time;
+      allow delete: if isValidId(categoryId) && isAdmin();
+    }
+
+    match /images/{imageId} {
+      allow get: if isValidId(imageId) && (existing().isPublic == true || isAdmin());
+      allow list: if resource.data.isPublic == true || isAdmin();
+      allow create: if isValidId(imageId) && isAdmin() && isValidDatasetImage(incoming()) &&
+        incoming().createdAt == request.time && incoming().updatedAt == request.time;
+      allow update: if isValidId(imageId) && isAdmin() && isValidDatasetImage(incoming()) &&
+        incoming().ownerId == existing().ownerId && incoming().createdAt == existing().createdAt &&
+        incoming().updatedAt == request.time;
+      allow delete: if isValidId(imageId) && isAdmin();
+    }
+
+    // Model Versions
+    match /modelVersions/{versionId} {
+      allow get: if isValidId(versionId) && (existing().isPublic == true || isAdmin());
+      allow list: if resource.data.isPublic == true || isAdmin();
+      allow create: if isValidId(versionId) && isAdmin() && isValidModelVersion(incoming()) &&
+        incoming().createdAt == request.time && incoming().updatedAt == request.time;
+      allow update: if isValidId(versionId) && isAdmin() && isValidModelVersion(incoming()) &&
+        incoming().ownerId == existing().ownerId && incoming().modelId == existing().modelId &&
+        incoming().version == existing().version && incoming().createdAt == existing().createdAt &&
+        incoming().updatedAt == request.time;
+      allow delete: if isValidId(versionId) && isAdmin();
+    }
+
+    // Shared Learning Activity
+    match /learningActivity/{activityId} {
+      allow get: if isValidId(activityId) && (existing().isPublic == true || isAdmin());
+      allow list: if resource.data.isPublic == true || isAdmin();
+      allow create: if isValidId(activityId) && isAdmin() && isValidLearningActivity(incoming()) &&
+        incoming().createdAt == request.time;
+      allow update: if false;
+      allow delete: if isValidId(activityId) && isAdmin();
+    }
+  }
+}

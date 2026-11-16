@@ -1,0 +1,303 @@
+{
+  "entities": {
+    "UserProfile": {
+      "title": "UserProfile",
+      "description": "Authenticated educator or learner account metadata isolated to owner.",
+      "type": "object",
+      "properties": {
+        "uid": { "type": "string", "minLength": 1, "maxLength": 128, "pattern": "^[a-zA-Z0-9_\\-]+$" },
+        "displayName": { "type": "string", "minLength": 1, "maxLength": 120 },
+        "email": { "type": "string", "format": "email", "maxLength": 200 },
+        "photoUrl": { "type": "string", "maxLength": 500 },
+        "role": { "type": "string", "enum": ["learner", "educator"] },
+        "createdAt": { "type": "string", "format": "date-time" },
+        "updatedAt": { "type": "string", "format": "date-time" }
+      },
+      "required": ["uid", "displayName", "role", "createdAt", "updatedAt"]
+    },
+    "ParticipantSession": {
+      "title": "ParticipantSession",
+      "description": "Isolated EdEx participant session metadata.",
+      "type": "object",
+      "properties": {
+        "sessionId": { "type": "string", "minLength": 1, "maxLength": 128, "pattern": "^[a-zA-Z0-9_\\-]+$" },
+        "nickname": { "type": "string", "maxLength": 60 },
+        "status": { "type": "string", "enum": ["active", "finished", "expired", "reset"] },
+        "expiresAt": { "type": "string", "format": "date-time" },
+        "createdAt": { "type": "string", "format": "date-time" },
+        "updatedAt": { "type": "string", "format": "date-time" }
+      },
+      "required": ["sessionId", "status", "expiresAt", "createdAt", "updatedAt"]
+    },
+    "SessionImage": {
+      "title": "SessionImage",
+      "description": "Temporary image uploaded inside an isolated participant session.",
+      "type": "object",
+      "properties": {
+        "imageId": { "type": "string", "minLength": 1, "maxLength": 128, "pattern": "^[a-zA-Z0-9_\\-]+$" },
+        "sessionId": { "type": "string", "minLength": 1, "maxLength": 128, "pattern": "^[a-zA-Z0-9_\\-]+$" },
+        "categoryId": { "type": "string", "minLength": 1, "maxLength": 128 },
+        "storagePath": { "type": "string", "minLength": 1, "maxLength": 300 },
+        "validationStatus": { "type": "string", "enum": ["validated", "pending", "failed", "deleted"] },
+        "createdAt": { "type": "string", "format": "date-time" }
+      },
+      "required": ["imageId", "sessionId", "categoryId", "storagePath", "validationStatus", "createdAt"]
+    },
+    "SessionProject": {
+      "title": "SessionProject",
+      "description": "Isolated workspace project created during a participant session.",
+      "type": "object",
+      "properties": {
+        "projectId": { "type": "string", "minLength": 1, "maxLength": 128, "pattern": "^[a-zA-Z0-9_\\-]+$" },
+        "sessionId": { "type": "string", "minLength": 1, "maxLength": 128, "pattern": "^[a-zA-Z0-9_\\-]+$" },
+        "name": { "type": "string", "minLength": 1, "maxLength": 120 },
+        "categoryCount": { "type": "integer" },
+        "imageCount": { "type": "integer" },
+        "status": { "type": "string", "enum": ["draft", "ready", "trained"] },
+        "createdAt": { "type": "string", "format": "date-time" },
+        "updatedAt": { "type": "string", "format": "date-time" }
+      },
+      "required": ["projectId", "sessionId", "name", "categoryCount", "imageCount", "status", "createdAt", "updatedAt"]
+    },
+    "SessionPrediction": {
+      "title": "SessionPrediction",
+      "description": "Inference result recorded inside an isolated participant session.",
+      "type": "object",
+      "properties": {
+        "predictionId": { "type": "string", "minLength": 1, "maxLength": 128, "pattern": "^[a-zA-Z0-9_\\-]+$" },
+        "sessionId": { "type": "string", "minLength": 1, "maxLength": 128, "pattern": "^[a-zA-Z0-9_\\-]+$" },
+        "modelId": { "type": "string", "minLength": 1, "maxLength": 128 },
+        "predictedLabel": { "type": "string", "minLength": 1, "maxLength": 80 },
+        "confidence": { "type": "number" },
+        "isUnknown": { "type": "boolean" },
+        "latencyMs": { "type": "number" },
+        "createdAt": { "type": "string", "format": "date-time" }
+      },
+      "required": ["predictionId", "sessionId", "modelId", "predictedLabel", "confidence", "isUnknown", "createdAt"]
+    },
+    "SessionFeedback": {
+      "title": "SessionFeedback",
+      "description": "Feedback submitted during a participant session.",
+      "type": "object",
+      "properties": {
+        "feedbackId": { "type": "string", "minLength": 1, "maxLength": 128, "pattern": "^[a-zA-Z0-9_\\-]+$" },
+        "sessionId": { "type": "string", "minLength": 1, "maxLength": 128, "pattern": "^[a-zA-Z0-9_\\-]+$" },
+        "modelId": { "type": "string", "minLength": 1, "maxLength": 128 },
+        "predictedCategory": { "type": "string", "minLength": 1, "maxLength": 80 },
+        "isCorrect": { "type": "boolean" },
+        "correctedCategory": { "type": "string", "maxLength": 80 },
+        "approvedForShared": { "type": "boolean" },
+        "createdAt": { "type": "string", "format": "date-time" }
+      },
+      "required": ["feedbackId", "sessionId", "modelId", "predictedCategory", "isCorrect", "approvedForShared", "createdAt"]
+    },
+    "SharedFeedback": {
+      "title": "SharedFeedback",
+      "description": "De-identified verified prediction feedback preserved across EdEx sessions.",
+      "type": "object",
+      "properties": {
+        "sharedFeedbackId": { "type": "string", "minLength": 1, "maxLength": 128, "pattern": "^[a-zA-Z0-9_\\-]+$" },
+        "modelId": { "type": "string", "minLength": 1, "maxLength": 128 },
+        "predictedCategory": { "type": "string", "minLength": 1, "maxLength": 80 },
+        "predictedConfidence": { "type": "number" },
+        "isCorrect": { "type": "boolean" },
+        "correctedCategory": { "type": "string", "maxLength": 80 },
+        "status": { "type": "string", "enum": ["verified", "applied", "dismissed"] },
+        "isPublic": { "type": "boolean" },
+        "createdAt": { "type": "string", "format": "date-time" },
+        "updatedAt": { "type": "string", "format": "date-time" }
+      },
+      "required": ["sharedFeedbackId", "modelId", "predictedCategory", "predictedConfidence", "isCorrect", "status", "isPublic", "createdAt", "updatedAt"]
+    },
+    "SharedModel": {
+      "title": "SharedModel",
+      "description": "Approved shared classification model accessible across all participant sessions.",
+      "type": "object",
+      "properties": {
+        "modelId": { "type": "string", "minLength": 1, "maxLength": 128, "pattern": "^[a-zA-Z0-9_\\-]+$" },
+        "name": { "type": "string", "minLength": 1, "maxLength": 120 },
+        "description": { "type": "string", "maxLength": 400 },
+        "categories": { "type": "array", "maxLength": 24 },
+        "datasetSize": { "type": "integer" },
+        "latestVersion": { "type": "integer" },
+        "activeVersion": { "type": "integer" },
+        "accuracy": { "type": "number" },
+        "precision": { "type": "number" },
+        "recall": { "type": "number" },
+        "latencyMs": { "type": "number" },
+        "isApproved": { "type": "boolean" },
+        "isPublic": { "type": "boolean" },
+        "createdAt": { "type": "string", "format": "date-time" },
+        "updatedAt": { "type": "string", "format": "date-time" }
+      },
+      "required": ["modelId", "name", "categories", "datasetSize", "latestVersion", "activeVersion", "accuracy", "isApproved", "isPublic", "createdAt", "updatedAt"]
+    },
+    "SessionSummary": {
+      "title": "SessionSummary",
+      "description": "Aggregated session completion summary isolated from subsequent participants.",
+      "type": "object",
+      "properties": {
+        "summaryId": { "type": "string", "minLength": 1, "maxLength": 128, "pattern": "^[a-zA-Z0-9_\\-]+$" },
+        "sessionId": { "type": "string", "minLength": 1, "maxLength": 128, "pattern": "^[a-zA-Z0-9_\\-]+$" },
+        "nickname": { "type": "string", "maxLength": 60 },
+        "categoriesCreated": { "type": "integer" },
+        "imagesAdded": { "type": "integer" },
+        "modelsTested": { "type": "integer" },
+        "predictionsCount": { "type": "integer" },
+        "verifiedCorrectCount": { "type": "integer" },
+        "feedbackSubmittedCount": { "type": "integer" },
+        "createdAt": { "type": "string", "format": "date-time" }
+      },
+      "required": ["summaryId", "sessionId", "categoriesCreated", "imagesAdded", "modelsTested", "predictionsCount", "verifiedCorrectCount", "feedbackSubmittedCount", "createdAt"]
+    },
+    "EducatorSettings": {
+      "title": "EducatorSettings",
+      "description": "Protected EdEx session duration, retention, and shared learning policies.",
+      "type": "object",
+      "properties": {
+        "settingId": { "type": "string", "minLength": 1, "maxLength": 128, "pattern": "^[a-zA-Z0-9_\\-]+$" },
+        "sessionDurationMinutes": { "type": "integer" },
+        "autoCleanupOnFinish": { "type": "boolean" },
+        "retainAnonymousFeedback": { "type": "boolean" },
+        "allowSharedModelPromotion": { "type": "boolean" },
+        "maxUploadImagesPerSession": { "type": "integer" },
+        "isPublic": { "type": "boolean" },
+        "updatedAt": { "type": "string", "format": "date-time" }
+      },
+      "required": ["settingId", "sessionDurationMinutes", "autoCleanupOnFinish", "retainAnonymousFeedback", "allowSharedModelPromotion", "maxUploadImagesPerSession", "isPublic", "updatedAt"]
+    },
+    "Category": {
+      "title": "Category",
+      "description": "Object category in the built-in dataset catalog.",
+      "type": "object",
+      "properties": {
+        "id": { "type": "string", "minLength": 1, "maxLength": 128, "pattern": "^[a-zA-Z0-9_\\-]+$" },
+        "name": { "type": "string", "minLength": 1, "maxLength": 80 },
+        "slug": { "type": "string", "minLength": 1, "maxLength": 80, "pattern": "^[a-z0-9\\-]+$" },
+        "targetCount": { "type": "integer" },
+        "imageCount": { "type": "integer" },
+        "isBuiltIn": { "type": "boolean" },
+        "isPublic": { "type": "boolean" },
+        "ownerId": { "type": "string", "minLength": 1, "maxLength": 128, "pattern": "^[a-zA-Z0-9_\\-]+$" },
+        "createdAt": { "type": "string", "format": "date-time" },
+        "updatedAt": { "type": "string", "format": "date-time" }
+      },
+      "required": ["id", "name", "slug", "targetCount", "imageCount", "isBuiltIn", "isPublic", "ownerId", "createdAt", "updatedAt"]
+    },
+    "DatasetImage": {
+      "title": "DatasetImage",
+      "description": "Metadata for built-in and shared autonomous dataset images.",
+      "type": "object",
+      "properties": {
+        "imageId": { "type": "string", "minLength": 1, "maxLength": 128, "pattern": "^[a-zA-Z0-9_\\-]+$" },
+        "categoryId": { "type": "string", "minLength": 1, "maxLength": 128, "pattern": "^[a-zA-Z0-9_\\-]+$" },
+        "categorySlug": { "type": "string", "minLength": 1, "maxLength": 80 },
+        "storagePath": { "type": "string", "minLength": 1, "maxLength": 300 },
+        "url": { "type": "string", "minLength": 1, "maxLength": 600 },
+        "source": { "type": "string", "minLength": 1, "maxLength": 200 },
+        "license": { "type": "string", "minLength": 1, "maxLength": 120 },
+        "width": { "type": "integer" },
+        "height": { "type": "integer" },
+        "format": { "type": "string", "enum": ["jpeg", "jpg", "png", "webp"] },
+        "validationStatus": { "type": "string", "enum": ["validated", "pending", "failed", "duplicate"] },
+        "datasetType": { "type": "string", "enum": ["built-in", "user", "autonomous"] },
+        "ownerId": { "type": "string", "minLength": 1, "maxLength": 128, "pattern": "^[a-zA-Z0-9_\\-]+$" },
+        "isPublic": { "type": "boolean" },
+        "createdAt": { "type": "string", "format": "date-time" },
+        "updatedAt": { "type": "string", "format": "date-time" }
+      },
+      "required": ["imageId", "categoryId", "categorySlug", "storagePath", "url", "source", "license", "width", "height", "format", "validationStatus", "datasetType", "ownerId", "isPublic", "createdAt", "updatedAt"]
+    },
+    "ModelVersion": {
+      "title": "ModelVersion",
+      "description": "Immutable evaluation snapshot and trained weights for a shared or user model version.",
+      "type": "object",
+      "properties": {
+        "versionId": { "type": "string", "minLength": 1, "maxLength": 128, "pattern": "^[a-zA-Z0-9_\\-]+$" },
+        "modelId": { "type": "string", "minLength": 1, "maxLength": 128, "pattern": "^[a-zA-Z0-9_\\-]+$" },
+        "ownerId": { "type": "string", "minLength": 1, "maxLength": 128, "pattern": "^[a-zA-Z0-9_\\-]+$" },
+        "isPublic": { "type": "boolean" },
+        "version": { "type": "integer" },
+        "accuracy": { "type": "number" },
+        "testAccuracy": { "type": "number" },
+        "isDeployed": { "type": "boolean" },
+        "createdAt": { "type": "string", "format": "date-time" },
+        "updatedAt": { "type": "string", "format": "date-time" }
+      },
+      "required": ["versionId", "modelId", "ownerId", "isPublic", "version", "accuracy", "testAccuracy", "isDeployed", "createdAt", "updatedAt"]
+    },
+    "LearningActivity": {
+      "title": "LearningActivity",
+      "description": "Real backend autonomous learning and evaluation event.",
+      "type": "object",
+      "properties": {
+        "activityId": { "type": "string", "minLength": 1, "maxLength": 128, "pattern": "^[a-zA-Z0-9_\\-]+$" },
+        "type": { "type": "string", "enum": ["collection", "confusion", "dedup", "retrain", "evaluation", "rollback", "correction"] },
+        "title": { "type": "string", "minLength": 1, "maxLength": 160 },
+        "detail": { "type": "string", "minLength": 1, "maxLength": 500 },
+        "ownerId": { "type": "string", "minLength": 1, "maxLength": 128, "pattern": "^[a-zA-Z0-9_\\-]+$" },
+        "isPublic": { "type": "boolean" },
+        "createdAt": { "type": "string", "format": "date-time" }
+      },
+      "required": ["activityId", "type", "title", "detail", "ownerId", "isPublic", "createdAt"]
+    }
+  },
+  "firestore": {
+    "/users/{userId}": {
+      "schema": { "$ref": "#/entities/UserProfile" },
+      "description": "Private user and educator account documents."
+    },
+    "/sessions/{sessionId}": {
+      "schema": { "$ref": "#/entities/ParticipantSession" },
+      "description": "Isolated EdEx participant session registry."
+    },
+    "/sessionImages/{imageId}": {
+      "schema": { "$ref": "#/entities/SessionImage" },
+      "description": "Temporary image records tied strictly to a sessionId."
+    },
+    "/sessionProjects/{projectId}": {
+      "schema": { "$ref": "#/entities/SessionProject" },
+      "description": "Temporary workspace projects scoped to a sessionId."
+    },
+    "/sessionPredictions/{predictionId}": {
+      "schema": { "$ref": "#/entities/SessionPrediction" },
+      "description": "Predictions evaluated inside a participant session."
+    },
+    "/sessionFeedback/{feedbackId}": {
+      "schema": { "$ref": "#/entities/SessionFeedback" },
+      "description": "Session-scoped prediction feedback records."
+    },
+    "/sharedFeedback/{sharedFeedbackId}": {
+      "schema": { "$ref": "#/entities/SharedFeedback" },
+      "description": "De-identified verified feedback preserved across EdEx sessions."
+    },
+    "/sharedModels/{modelId}": {
+      "schema": { "$ref": "#/entities/SharedModel" },
+      "description": "Approved shared classification models available to all participants."
+    },
+    "/modelVersions/{versionId}": {
+      "schema": { "$ref": "#/entities/ModelVersion" },
+      "description": "Versioned evaluation metrics and weights references."
+    },
+    "/sessionSummaries/{summaryId}": {
+      "schema": { "$ref": "#/entities/SessionSummary" },
+      "description": "Aggregated participant session completion summaries."
+    },
+    "/educatorSettings/{settingId}": {
+      "schema": { "$ref": "#/entities/EducatorSettings" },
+      "description": "EdEx educator controls for session duration, retention, and shared learning."
+    },
+    "/categories/{categoryId}": {
+      "schema": { "$ref": "#/entities/Category" },
+      "description": "Built-in object categories."
+    },
+    "/images/{imageId}": {
+      "schema": { "$ref": "#/entities/DatasetImage" },
+      "description": "Permanent built-in and shared autonomous dataset images."
+    },
+    "/learningActivity/{activityId}": {
+      "schema": { "$ref": "#/entities/LearningActivity" },
+      "description": "Chronological shared autonomous learning and evaluation events."
+    }
+  }
+}

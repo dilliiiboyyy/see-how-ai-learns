@@ -1,0 +1,52 @@
+rules_version = '2';
+
+service firebase.storage {
+  match /b/{bucket}/o {
+    function isSignedIn() {
+      return request.auth != null && request.auth.token.email_verified == true;
+    }
+
+    function isAdmin() {
+      return isSignedIn() && request.auth.token.email == 'dilshaanmuhvp@gmail.com';
+    }
+
+    function isValidImageUpload() {
+      return request.resource.size > 0 &&
+        request.resource.size <= 10 * 1024 * 1024 &&
+        request.resource.contentType.matches('image/(jpeg|jpg|png|webp)');
+    }
+
+    // 1. Permanent built-in datasets
+    match /built-in-dataset/{category}/{fileName} {
+      allow read: if true;
+      allow write: if isAdmin() && isValidImageUpload();
+    }
+
+    // 2. Shared approved autonomous learning examples
+    match /autonomous-learning/{category}/{fileName} {
+      allow read: if true;
+      allow write: if isAdmin() && isValidImageUpload();
+    }
+
+    match /shared-learning/{category}/{fileName} {
+      allow read: if true;
+      allow write: if isAdmin() && isValidImageUpload();
+    }
+
+    match /thumbnails/{category}/{fileName} {
+      allow read: if true;
+      allow write: if isAdmin() && isValidImageUpload();
+    }
+
+    // 3. Shared model assets (read-only for participants; admin/pipeline writes)
+    match /shared-models/{modelId}/{fileName} {
+      allow read: if true;
+      allow write: if isAdmin() && request.resource.size <= 25 * 1024 * 1024;
+    }
+
+    // 4. Temporary participant uploads strictly associated with sessionId (admin/backend managed)
+    match /session-uploads/{sessionId}/{categoryId}/{fileName} {
+      allow read, write: if isAdmin() && isValidImageUpload();
+    }
+  }
+}

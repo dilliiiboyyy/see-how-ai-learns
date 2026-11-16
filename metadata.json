@@ -1,0 +1,6 @@
+{
+  "name": "See How AI Learns.",
+  "description": "An interactive educational machine-learning platform to teach computers to recognize everyday objects, train real models, test live recognition, and watch AI improve autonomously.",
+  "requestFramePermissions": ["camera"],
+  "majorCapabilities": ["MAJOR_CAPABILITY_SERVER_SIDE_GEMINI_API"]
+}

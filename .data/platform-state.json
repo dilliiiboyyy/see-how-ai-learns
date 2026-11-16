@@ -1,0 +1,916 @@
+{
+  "models": [],
+  "sharedModels": [],
+  "projects": [
+    {
+      "projectId": "example_desk_objects",
+      "name": "Desk Objects Study",
+      "description": "Compare closely related stationery and tabletop items (Pen, Pencil, Cup, Book).",
+      "ownerId": "system_examples",
+      "isPublic": true,
+      "isExample": true,
+      "categories": [
+        {
+          "categoryId": "proj_cat_pens",
+          "name": "Pen",
+          "slug": "pens",
+          "images": [
+            {
+              "imageId": "img_pens_abe4901f",
+              "url": "/api/storage/built-in-dataset/pens/img_pens_abe4901f.jpg",
+              "thumbnailUrl": "/api/storage/thumbnails/pens/img_pens_abe4901f.jpg",
+              "title": "Ballpoint of common ballpoint pen",
+              "sha256": "dd0e3a37568033036b30e7a6455650281517e6e53ee1d56a8ae878e8b7b6949a",
+              "source": "Wikimedia Commons"
+            },
+            {
+              "imageId": "img_pens_8051be28",
+              "url": "/api/storage/built-in-dataset/pens/img_pens_8051be28.jpg",
+              "thumbnailUrl": "/api/storage/thumbnails/pens/img_pens_8051be28.jpg",
+              "title": "Ballpoint-pen-parts",
+              "sha256": "1e796d5138bca30079b06677034cdcafe4b2b650b01d84b7062878aa1b0165e7",
+              "source": "Wikimedia Commons"
+            },
+            {
+              "imageId": "img_pens_f662b359",
+              "url": "/api/storage/built-in-dataset/pens/img_pens_f662b359.jpg",
+              "thumbnailUrl": "/api/storage/thumbnails/pens/img_pens_f662b359.jpg",
+              "title": "Macro Biro writing",
+              "sha256": "c501f73e7d891a1298eeb21ae0d682585fa0ac8be5d10a3855d47c43ae11af80",
+              "source": "Wikimedia Commons"
+            },
+            {
+              "imageId": "img_pens_6b990642",
+              "url": "/api/storage/built-in-dataset/pens/img_pens_6b990642.jpg",
+              "thumbnailUrl": "/api/storage/thumbnails/pens/img_pens_6b990642.jpg",
+              "title": "Macro Biro writing2",
+              "sha256": "6af3b7ce3c4881d274877384e4e4472f6a3b548e841f028d2930cc6d5debc47e",
+              "source": "Wikimedia Commons"
+            },
+            {
+              "imageId": "img_pens_8a5bb22d",
+              "url": "/api/storage/built-in-dataset/pens/img_pens_8a5bb22d.jpg",
+              "thumbnailUrl": "/api/storage/thumbnails/pens/img_pens_8a5bb22d.jpg",
+              "title": "Ballpoint pen close-up",
+              "sha256": "e8749a1a7023b0e351d5df3bf115e579ed4e5b671ff0d18ede1d0441dfc1f6c8",
+              "source": "Wikimedia Commons"
+            },
+            {
+              "imageId": "img_pens_f09eefec",
+              "url": "/api/storage/built-in-dataset/pens/img_pens_f09eefec.jpg",
+              "thumbnailUrl": "/api/storage/thumbnails/pens/img_pens_f09eefec.jpg",
+              "title": "Ballpoint-pen-parts vert",
+              "sha256": "5ec5c3061ec3b85a891b19fcf4ad1dd07bf6e0113bcf05937e605d69825ed24d",
+              "source": "Wikimedia Commons"
+            },
+            {
+              "imageId": "img_pens_f71ae7c4",
+              "url": "/api/storage/built-in-dataset/pens/img_pens_f71ae7c4.jpg",
+              "thumbnailUrl": "/api/storage/thumbnails/pens/img_pens_f71ae7c4.jpg",
+              "title": "Ballpoint pen drawing",
+              "sha256": "a618bc3a357d4bf91cc44b1fa73283acd2b23fc39f8e991716e22d159ec0804d",
+              "source": "Wikimedia Commons"
+            },
+            {
+              "imageId": "img_pens_843d8b36",
+              "url": "/api/storage/built-in-dataset/pens/img_pens_843d8b36.jpg",
+              "thumbnailUrl": "/api/storage/thumbnails/pens/img_pens_843d8b36.jpg",
+              "title": "Crossword solving using ballpoint pen",
+              "sha256": "b7afe6720aeb2be306bd3953fb845c39a5b66c3ef9fab0a8f00a933bf57ffbff",
+              "source": "Wikimedia Commons"
+            },
+            {
+              "imageId": "img_pens_5d85f2ab",
+              "url": "/api/storage/built-in-dataset/pens/img_pens_5d85f2ab.jpg",
+              "thumbnailUrl": "/api/storage/thumbnails/pens/img_pens_5d85f2ab.jpg",
+              "title": "Ballpoint Pen DS",
+              "sha256": "14b026e768cfaa1e3ad6bc0b79d4385e0625a5a64bc3df87e9abad0b15cce34e",
+              "source": "Wikimedia Commons"
+            },
+            {
+              "imageId": "img_pens_e6e2d326",
+              "url": "/api/storage/built-in-dataset/pens/img_pens_e6e2d326.jpg",
+              "thumbnailUrl": "/api/storage/thumbnails/pens/img_pens_e6e2d326.jpg",
+              "title": "Jinhao 182 twist action ballpoint pen disassembled",
+              "sha256": "88588429182f70a9e088ce23abc4f745a2c7cd2f87441d3705d29d4f861ee89f",
+              "source": "Wikimedia Commons"
+            }
+          ]
+        },
+        {
+          "categoryId": "proj_cat_pencils",
+          "name": "Pencil",
+          "slug": "pencils",
+          "images": []
+        },
+        {
+          "categoryId": "proj_cat_cups",
+          "name": "Cup",
+          "slug": "cups",
+          "images": [
+            {
+              "imageId": "img_cups_17fc86b6",
+              "url": "/api/storage/built-in-dataset/cups/img_cups_17fc86b6.jpg",
+              "thumbnailUrl": "/api/storage/thumbnails/cups/img_cups_17fc86b6.jpg",
+              "title": "Meissen-teacup pinkrose01",
+              "sha256": "946a91c29528d2752464823259413815675d5cf11ba0e6d42034e6538fa0a2e2",
+              "source": "Wikimedia Commons"
+            }
+          ]
+        },
+        {
+          "categoryId": "proj_cat_books",
+          "name": "Book",
+          "slug": "books",
+          "images": [
+            {
+              "imageId": "img_books_e5b60ca3",
+              "url": "/api/storage/built-in-dataset/books/img_books_e5b60ca3.jpg",
+              "thumbnailUrl": "/api/storage/thumbnails/books/img_books_e5b60ca3.jpg",
+              "title": "Old book bindings",
+              "sha256": "7c0086819cd12676177676f65f6f05bc464195ed423da319b43f02be9dd0b9c3",
+              "source": "Wikimedia Commons"
+            },
+            {
+              "imageId": "img_books_eb1bc4b9",
+              "url": "/api/storage/built-in-dataset/books/img_books_eb1bc4b9.jpg",
+              "thumbnailUrl": "/api/storage/thumbnails/books/img_books_eb1bc4b9.jpg",
+              "title": "Latin dictionary",
+              "sha256": "f7a86dbfb57a0530ba30104fe788b740798e509220855d4257c300649f4d426c",
+              "source": "Wikimedia Commons"
+            },
+            {
+              "imageId": "img_books_c1dcba91",
+              "url": "/api/storage/built-in-dataset/books/img_books_c1dcba91.jpg",
+              "thumbnailUrl": "/api/storage/thumbnails/books/img_books_c1dcba91.jpg",
+              "title": "Sunrise by William Black - Book Cover - John B. Alden - New York - 1883 - Project Gutenberg eText17308",
+              "sha256": "5d516f0bb335a7a013f66c1833e1f7ad803ec0e8131e45e157be367602ba074f",
+              "source": "Wikimedia Commons"
+            },
+            {
+              "imageId": "img_books_4bfd9c0c",
+              "url": "/api/storage/built-in-dataset/books/img_books_4bfd9c0c.jpg",
+              "thumbnailUrl": "/api/storage/thumbnails/books/img_books_4bfd9c0c.jpg",
+              "title": "Old book - Les Miserables",
+              "sha256": "530910713938e75d69d717e20860a343d784fe94aa699c3680e45928f6324cf6",
+              "source": "Wikimedia Commons"
+            },
+            {
+              "imageId": "img_books_b8deb843",
+              "url": "/api/storage/built-in-dataset/books/img_books_b8deb843.jpg",
+              "thumbnailUrl": "/api/storage/thumbnails/books/img_books_b8deb843.jpg",
+              "title": "Woman working in the street",
+              "sha256": "2ccf537b0f710d15dc3f3a74f189d3e89059d267fb86a02def51dd555ad21ca7",
+              "source": "Wikimedia Commons"
+            },
+            {
+              "imageId": "img_books_846a4e87",
+              "url": "/api/storage/built-in-dataset/books/img_books_846a4e87.jpg",
+              "thumbnailUrl": "/api/storage/thumbnails/books/img_books_846a4e87.jpg",
+              "title": "Pediapress hardcover color2",
+              "sha256": "8d4942bd3e6bb756925e6d7f10c6c2c5647b60d75792e2d735b11f33dbc7bce7",
+              "source": "Wikimedia Commons"
+            },
+            {
+              "imageId": "img_books_aed72e77",
+              "url": "/api/storage/built-in-dataset/books/img_books_aed72e77.jpg",
+              "thumbnailUrl": "/api/storage/thumbnails/books/img_books_aed72e77.jpg",
+              "title": "Pediapress hardcover color",
+              "sha256": "b7ae1ef2f45e197300a90cd15c7ab488cbddec043793759a66ed020865c08c00",
+              "source": "Wikimedia Commons"
+            },
+            {
+              "imageId": "img_books_327bb7d4",
+              "url": "/api/storage/built-in-dataset/books/img_books_327bb7d4.jpg",
+              "thumbnailUrl": "/api/storage/thumbnails/books/img_books_327bb7d4.jpg",
+              "title": "PediaPress Hardcover Shelf01",
+              "sha256": "7f91769df07b22fe5fb3f79a3e722b4ebd34c11f2c171fcb10f779eca91a8364",
+              "source": "Wikimedia Commons"
+            },
+            {
+              "imageId": "img_books_d66dcd6c",
+              "url": "/api/storage/built-in-dataset/books/img_books_d66dcd6c.jpg",
+              "thumbnailUrl": "/api/storage/thumbnails/books/img_books_d66dcd6c.jpg",
+              "title": "Max Dessoir - Buch der Erinnerung, Umschlagseite, Hardcover, Stuttgart 1947, Copyright 1946 by Ferdinand Enke",
+              "sha256": "5fddb7fa756dd26f892bfdee3d3e11963ea31fb8dbed6bf52ed21f9abcca98e7",
+              "source": "Wikimedia Commons"
+            },
+            {
+              "imageId": "img_books_c8c9acce",
+              "url": "/api/storage/built-in-dataset/books/img_books_c8c9acce.jpg",
+              "thumbnailUrl": "/api/storage/thumbnails/books/img_books_c8c9acce.jpg",
+              "title": "Drva nosijo v koših, Robidišče 1951",
+              "sha256": "af5636b444e3e22be66f99f906528b2a071f98c4389a7759dd771b35774c422d",
+              "source": "Wikimedia Commons"
+            }
+          ]
+        }
+      ],
+      "status": "ready",
+      "createdAt": "2026-11-15T20:11:37.972Z",
+      "updatedAt": "2026-11-15T20:11:37.972Z"
+    },
+    {
+      "projectId": "example_everyday_carry",
+      "name": "Everyday Carry & Transit",
+      "description": "Train a classifier across outdoor and personal items (Car, Backpack, Watch, Mobile phone).",
+      "ownerId": "system_examples",
+      "isPublic": true,
+      "isExample": true,
+      "categories": [
+        {
+          "categoryId": "proj_cat_cars",
+          "name": "Car",
+          "slug": "cars",
+          "images": [
+            {
+              "imageId": "img_cars_d3aaee23",
+              "url": "/api/storage/built-in-dataset/cars/img_cars_d3aaee23.jpg",
+              "thumbnailUrl": "/api/storage/thumbnails/cars/img_cars_d3aaee23.jpg",
+              "title": "Google Street View Car in Chinatown, Toronto",
+              "sha256": "d31bd8c80c39923e560706245d86f377fdf0128b6cf15655ed0e5b06bcda3287",
+              "source": "Wikimedia Commons"
+            },
+            {
+              "imageId": "img_cars_bd8894c8",
+              "url": "/api/storage/built-in-dataset/cars/img_cars_bd8894c8.jpg",
+              "thumbnailUrl": "/api/storage/thumbnails/cars/img_cars_bd8894c8.jpg",
+              "title": "1956 Chevrolet Two-Ten 4-Door Sedan, front left side, DQ Littleton Car Show 2026-07-12",
+              "sha256": "d15bcaaf18afc89d7ebba73bf25569aca1e4f5d79b041f9d781092b72577e72c",
+              "source": "Wikimedia Commons"
+            },
+            {
+              "imageId": "img_cars_e34b400f",
+              "url": "/api/storage/built-in-dataset/cars/img_cars_e34b400f.jpg",
+              "thumbnailUrl": "/api/storage/thumbnails/cars/img_cars_e34b400f.jpg",
+              "title": "2009 Pontiac G8 4-Door Sedan, 15th Annual All Pontiac Car Show 2026-09-20",
+              "sha256": "25623621b662aa5c95648bc437f0d585e890269b6be063a7318bbea94fd03527",
+              "source": "Wikimedia Commons"
+            },
+            {
+              "imageId": "img_cars_9600e2e9",
+              "url": "/api/storage/built-in-dataset/cars/img_cars_9600e2e9.jpg",
+              "thumbnailUrl": "/api/storage/thumbnails/cars/img_cars_9600e2e9.jpg",
+              "title": "1958 Goggomobil T400 sedan - Variety Club Bash rally car (8877534695)",
+              "sha256": "bbc9c5c5e68c0dd4c2ac5358e7a32cad15d1c220f43d3b1f8e5459efa20ecbe8",
+              "source": "Wikimedia Commons"
+            },
+            {
+              "imageId": "img_cars_9bad382b",
+              "url": "/api/storage/built-in-dataset/cars/img_cars_9bad382b.jpg",
+              "thumbnailUrl": "/api/storage/thumbnails/cars/img_cars_9bad382b.jpg",
+              "title": "1958 Goggomobil T400 sedan - Variety Club Bash rally car (8878148270)",
+              "sha256": "aeca954eff0f7f22fbe2c7ce64335088863b65842cdf92b83a96759c6ae8e81a",
+              "source": "Wikimedia Commons"
+            },
+            {
+              "imageId": "img_cars_af10ca41",
+              "url": "/api/storage/built-in-dataset/cars/img_cars_af10ca41.jpg",
+              "thumbnailUrl": "/api/storage/thumbnails/cars/img_cars_af10ca41.jpg",
+              "title": "Ford Fiesta stazione 2",
+              "sha256": "6a9ca99980101c8ff9e1059fba664bc45ec8d10275654c1b60034b8d02eb0745",
+              "source": "Wikimedia Commons"
+            },
+            {
+              "imageId": "img_cars_a6ac4ab6",
+              "url": "/api/storage/built-in-dataset/cars/img_cars_a6ac4ab6.jpg",
+              "thumbnailUrl": "/api/storage/thumbnails/cars/img_cars_a6ac4ab6.jpg",
+              "title": "Hatchback 3 doors",
+              "sha256": "d33e37c62a281dc546eaf5255c9a2ee4fd9be6a180f29416fc06b275c2daf71f",
+              "source": "Wikimedia Commons"
+            },
+            {
+              "imageId": "img_cars_2a227c0b",
+              "url": "/api/storage/built-in-dataset/cars/img_cars_2a227c0b.jpg",
+              "thumbnailUrl": "/api/storage/thumbnails/cars/img_cars_2a227c0b.jpg",
+              "title": "Chevrolet Kadett 2.0 GL",
+              "sha256": "e3f0a756c3ea008c4d17f7e9aa2e443eb07418817d3398ebd1f6382c6f19d4d3",
+              "source": "Wikimedia Commons"
+            },
+            {
+              "imageId": "img_cars_c99452ee",
+              "url": "/api/storage/built-in-dataset/cars/img_cars_c99452ee.jpg",
+              "thumbnailUrl": "/api/storage/thumbnails/cars/img_cars_c99452ee.jpg",
+              "title": "Ford Fiesta, IAA 2017, Frankfurt (1Y7A3331)",
+              "sha256": "84cdba72bb69afc253c88139c926277b236c510e6dc07de56e8c1f6196e652de",
+              "source": "Wikimedia Commons"
+            },
+            {
+              "imageId": "img_cars_cc86f535",
+              "url": "/api/storage/built-in-dataset/cars/img_cars_cc86f535.jpg",
+              "thumbnailUrl": "/api/storage/thumbnails/cars/img_cars_cc86f535.jpg",
+              "title": "2017 Ford Fiesta Zetec Turbo 1.0 Front",
+              "sha256": "716e13f22acf3518e3876df8a0f09b1997c180cdec2945c54a36f258a6d9e602",
+              "source": "Wikimedia Commons"
+            }
+          ]
+        },
+        {
+          "categoryId": "proj_cat_backpacks",
+          "name": "Backpack",
+          "slug": "backpacks",
+          "images": []
+        },
+        {
+          "categoryId": "proj_cat_watches",
+          "name": "Watch",
+          "slug": "watches",
+          "images": []
+        },
+        {
+          "categoryId": "proj_cat_mobile-phones",
+          "name": "Mobile phone",
+          "slug": "mobile-phones",
+          "images": [
+            {
+              "imageId": "img_mobile_phones_6d2db689",
+              "url": "/api/storage/built-in-dataset/mobile-phones/img_mobile_phones_6d2db689.jpg",
+              "thumbnailUrl": "/api/storage/thumbnails/mobile-phones/img_mobile_phones_6d2db689.jpg",
+              "title": "Nexus 4 Rear",
+              "sha256": "52cfc076e92128c17daa94ce58ce2ae6e4ea3d440910896daca32d5d7289c489",
+              "source": "Wikimedia Commons"
+            },
+            {
+              "imageId": "img_mobile_phones_a802c112",
+              "url": "/api/storage/built-in-dataset/mobile-phones/img_mobile_phones_a802c112.jpg",
+              "thumbnailUrl": "/api/storage/thumbnails/mobile-phones/img_mobile_phones_a802c112.jpg",
+              "title": "Nexus 4 in case",
+              "sha256": "e76700cefbf6bccb5202a089653b1819bfb22e8c10781fb65f7dfa9f492f3581",
+              "source": "Wikimedia Commons"
+            },
+            {
+              "imageId": "img_mobile_phones_1b0a450f",
+              "url": "/api/storage/built-in-dataset/mobile-phones/img_mobile_phones_1b0a450f.jpg",
+              "thumbnailUrl": "/api/storage/thumbnails/mobile-phones/img_mobile_phones_1b0a450f.jpg",
+              "title": "Wikipedia app on Nexus 4 perspective",
+              "sha256": "6d281d03b9b8dcb7e77af78d3835e6f7044cdf3615ad9bcdb9cfbaaadebd5438",
+              "source": "Wikimedia Commons"
+            }
+          ]
+        }
+      ],
+      "status": "ready",
+      "createdAt": "2026-11-15T20:11:37.972Z",
+      "updatedAt": "2026-11-15T20:11:37.972Z"
+    }
+  ],
+  "learningQueue": [
+    {
+      "queueId": "q_e2f7015d",
+      "categorySlug": "cups",
+      "categoryName": "Cup",
+      "imageId": "img_auto_cups_ea2bb8ba",
+      "source": "Wikimedia Commons",
+      "sourceUrl": "https://commons.wikimedia.org/wiki/File:Teacup_and_saucer_(AM_10895-1).jpg",
+      "license": "CC BY 4.0",
+      "imageUrl": "/api/storage/autonomous-learning/cups/img_auto_cups_ea2bb8ba.jpg",
+      "thumbnailUrl": "/api/storage/thumbnails/cups/img_auto_cups_ea2bb8ba.jpg",
+      "qualityScore": 0.382,
+      "reason": "Scheduled diversity expansion",
+      "status": "pending",
+      "createdAt": "2026-11-15T20:13:02.491Z",
+      "updatedAt": "2026-11-15T20:13:02.491Z"
+    },
+    {
+      "queueId": "q_e1848d83",
+      "categorySlug": "cups",
+      "categoryName": "Cup",
+      "imageId": "img_auto_cups_28ce06e8",
+      "source": "Wikimedia Commons",
+      "sourceUrl": "https://commons.wikimedia.org/wiki/File:HK_%E9%A6%99%E6%B8%AF%E4%BB%94_Aberdeen_%E7%A8%BB%E9%A6%99%E9%9B%86%E5%9C%98_Tao_Heung_Restaurant_Group_chinese_tableware_Teacup_n_Teapot_May-2012.JPG",
+      "license": "CC BY-SA 3.0",
+      "imageUrl": "/api/storage/autonomous-learning/cups/img_auto_cups_28ce06e8.jpg",
+      "thumbnailUrl": "/api/storage/thumbnails/cups/img_auto_cups_28ce06e8.jpg",
+      "qualityScore": 0.548,
+      "reason": "Scheduled diversity expansion",
+      "status": "approved",
+      "createdAt": "2026-11-15T20:13:02.491Z",
+      "updatedAt": "2026-11-15T20:13:02.491Z"
+    }
+  ],
+  "userCorrections": [
+    {
+      "correctionId": "corr_f17e5576",
+      "modelId": "mdl_builtin_reference",
+      "ownerId": "guest_learner",
+      "predictedCategory": "Pen",
+      "predictedConfidence": 0.54,
+      "isCorrect": false,
+      "correctedCategory": "Pencil",
+      "status": "verified",
+      "createdAt": "2026-11-15T20:11:38.284Z",
+      "updatedAt": "2026-11-15T20:11:38.284Z"
+    }
+  ],
+  "sharedFeedback": [
+    {
+      "feedbackId": "sfb_a5323105",
+      "modelId": "mdl_builtin_reference",
+      "predictedCategory": "Pen",
+      "predictedConfidence": 0.68,
+      "isCorrect": false,
+      "correctedCategory": "Pencil",
+      "status": "verified",
+      "createdAt": "2026-11-16T19:39:07.557Z",
+      "updatedAt": "2026-11-16T19:39:07.557Z"
+    },
+    {
+      "feedbackId": "sfb_2658fdfa",
+      "modelId": "mdl_builtin_reference",
+      "predictedCategory": "Pen",
+      "predictedConfidence": 0.68,
+      "isCorrect": false,
+      "correctedCategory": "Pencil",
+      "status": "verified",
+      "createdAt": "2026-11-15T20:50:22.949Z",
+      "updatedAt": "2026-11-15T20:50:22.949Z"
+    },
+    {
+      "feedbackId": "sfb_bd937889",
+      "modelId": "mdl_builtin_reference",
+      "predictedCategory": "Pen",
+      "predictedConfidence": 0.68,
+      "isCorrect": false,
+      "correctedCategory": "Pencil",
+      "status": "verified",
+      "createdAt": "2026-11-15T20:42:29.758Z",
+      "updatedAt": "2026-11-15T20:42:29.758Z"
+    },
+    {
+      "feedbackId": "sfb_12d34912",
+      "modelId": "mdl_builtin_reference",
+      "predictedCategory": "Pen",
+      "predictedConfidence": 0.68,
+      "isCorrect": false,
+      "correctedCategory": "Pencil",
+      "status": "verified",
+      "createdAt": "2026-11-15T20:35:25.019Z",
+      "updatedAt": "2026-11-15T20:35:25.019Z"
+    },
+    {
+      "feedbackId": "corr_f17e5576",
+      "modelId": "mdl_builtin_reference",
+      "predictedCategory": "Pen",
+      "predictedConfidence": 0.54,
+      "isCorrect": false,
+      "correctedCategory": "Pencil",
+      "status": "verified",
+      "createdAt": "2026-11-15T20:11:38.284Z",
+      "updatedAt": "2026-11-15T20:11:38.284Z"
+    }
+  ],
+  "learningActivity": [
+    {
+      "activityId": "act_6c0278f3",
+      "type": "confusion",
+      "title": "Detected confusion between Pen and Pencil",
+      "detail": "Verified feedback (68% confidence) saved to shared learning memory without session identity.",
+      "categorySlug": "pencil",
+      "modelId": "mdl_builtin_reference",
+      "createdAt": "2026-11-16T19:39:07.557Z"
+    },
+    {
+      "activityId": "act_72a02cfe",
+      "type": "confusion",
+      "title": "Detected confusion between Pen and Pencil",
+      "detail": "Verified feedback (68% confidence) saved to shared learning memory without session identity.",
+      "categorySlug": "pencil",
+      "modelId": "mdl_builtin_reference",
+      "createdAt": "2026-11-15T20:50:22.949Z"
+    },
+    {
+      "activityId": "act_81bf3175",
+      "type": "confusion",
+      "title": "Detected confusion between Pen and Pencil",
+      "detail": "Verified feedback (68% confidence) saved to shared learning memory without session identity.",
+      "categorySlug": "pencil",
+      "modelId": "mdl_builtin_reference",
+      "createdAt": "2026-11-15T20:42:29.758Z"
+    },
+    {
+      "activityId": "act_fe50ad95",
+      "type": "confusion",
+      "title": "Detected confusion between Pen and Pencil",
+      "detail": "Verified feedback (68% confidence) saved to shared learning memory without session identity.",
+      "categorySlug": "pencil",
+      "modelId": "mdl_builtin_reference",
+      "createdAt": "2026-11-15T20:35:25.019Z"
+    },
+    {
+      "activityId": "act_6e7237d7",
+      "type": "collection",
+      "title": "Found 2 additional verified cup images",
+      "detail": "Scheduled diversity expansion. Verified license, sharpness, and non-duplication before adding to the learning queue.",
+      "categorySlug": "cups",
+      "createdAt": "2026-11-15T20:13:07.734Z"
+    },
+    {
+      "activityId": "act_eaa4fdf0",
+      "type": "rollback",
+      "title": "Previous model Test Gate Model v1 retained",
+      "detail": "Candidate v2 scored 72.0% vs deployed v1 at 85.0%. Automatic safety gate rolled back deployment.",
+      "modelId": "mdl_test_gate",
+      "createdAt": "2026-11-15T20:12:43.193Z"
+    },
+    {
+      "activityId": "act_bed965d3",
+      "type": "evaluation",
+      "title": "Trained & saved \"Test Gate Model\" (v1)",
+      "detail": "Independent test accuracy 85.0% across 2 categories (20 images, 14.2ms inference).",
+      "modelId": "mdl_test_gate",
+      "createdAt": "2026-11-15T20:12:43.180Z"
+    },
+    {
+      "type": "collection",
+      "title": "Validated uploaded cup example",
+      "detail": "Stored 320×320 JPEG (quality 58%) at user-datasets/guest_learner/test_verify_proj/cups/img_usr_36c9bdc2-c.jpg.",
+      "categorySlug": "cups",
+      "activityId": "act_f039e8bb",
+      "createdAt": "2026-11-15T20:12:43.128Z"
+    },
+    {
+      "activityId": "act_054af619",
+      "type": "correction",
+      "title": "Recorded verified correction: Pen → Pencil",
+      "detail": "User flagged prediction \"Pen\" (54%) as \"Pencil\". Prioritized for autonomous dataset collection.",
+      "categorySlug": "pencil",
+      "modelId": "mdl_builtin_reference",
+      "createdAt": "2026-11-15T20:11:38.284Z"
+    },
+    {
+      "activityId": "act_47f7e691",
+      "type": "collection",
+      "title": "Validated 217 built-in images across 12 categories",
+      "detail": "All images passed format decoding, resolution checks, SHA-256 and perceptual dHash deduplication, and reusable license verification.",
+      "createdAt": "2026-11-15T20:11:37.972Z"
+    }
+  ],
+  "systemSettings": {
+    "autonomousEnabled": true,
+    "autoCollectEnabled": true,
+    "autoRetrainEnabled": true,
+    "paused": false,
+    "maxDailyImages": 30,
+    "retrainFrequencyHours": 6,
+    "minConfidenceThreshold": 0.62,
+    "minImprovementDelta": 0.01,
+    "lastRunAt": "2026-11-15T20:13:07.734Z",
+    "dailyCollectedCount": 2,
+    "dailyCollectedDate": "2026-11-15",
+    "updatedAt": "2026-11-15T20:13:07.734Z"
+  },
+  "educatorSettings": {
+    "sessionDurationMinutes": 60,
+    "autoCleanupOnFinish": true,
+    "retainAnonymousFeedback": true,
+    "allowSharedModelPromotion": true,
+    "maxUploadImagesPerSession": 40,
+    "updatedAt": "2026-11-15T20:35:10.305Z"
+  },
+  "sessions": [
+    {
+      "sessionId": "sess_ff1b3aec-b",
+      "tokenHash": "",
+      "nickname": "Participant Beta",
+      "status": "finished",
+      "categories": [],
+      "projects": [],
+      "models": [],
+      "uploadedImageIds": [],
+      "uploadedStoragePaths": [],
+      "predictions": [],
+      "feedback": [],
+      "modelsTested": [],
+      "sessionSettings": {
+        "confidenceThreshold": 0.62
+      },
+      "inFlightOps": 0,
+      "createdAt": "2026-11-16T19:39:07.575Z",
+      "expiresAt": "2026-11-16T20:39:07.575Z",
+      "updatedAt": "2026-11-16T19:39:07.644Z",
+      "finishedAt": "2026-11-16T19:39:07.644Z"
+    },
+    {
+      "sessionId": "sess_87e93510-b",
+      "tokenHash": "",
+      "nickname": "Participant Alpha",
+      "status": "finished",
+      "categories": [],
+      "projects": [],
+      "models": [],
+      "uploadedImageIds": [],
+      "uploadedStoragePaths": [],
+      "predictions": [],
+      "feedback": [],
+      "modelsTested": [
+        "Alpha Session Classifier"
+      ],
+      "sessionSettings": {
+        "confidenceThreshold": 0.62
+      },
+      "inFlightOps": 0,
+      "createdAt": "2026-11-16T19:39:07.386Z",
+      "expiresAt": "2026-11-16T20:39:07.386Z",
+      "updatedAt": "2026-11-16T19:39:07.598Z",
+      "finishedAt": "2026-11-16T19:39:07.598Z"
+    },
+    {
+      "sessionId": "sess_e1bffe75-a",
+      "tokenHash": "",
+      "nickname": "Participant Beta",
+      "participantCode": "",
+      "status": "finished",
+      "categories": [],
+      "projects": [],
+      "models": [],
+      "uploadedImageIds": [],
+      "uploadedStoragePaths": [],
+      "predictions": [],
+      "feedback": [],
+      "modelsTested": [],
+      "sessionSettings": {
+        "confidenceThreshold": 0.62
+      },
+      "inFlightOps": 0,
+      "createdAt": "2026-11-15T20:50:22.962Z",
+      "expiresAt": "2026-11-15T21:50:22.962Z",
+      "updatedAt": "2026-11-15T20:50:23.024Z",
+      "finishedAt": "2026-11-15T20:50:23.024Z"
+    },
+    {
+      "sessionId": "sess_dee26a50-e",
+      "tokenHash": "",
+      "nickname": "Participant Alpha",
+      "participantCode": "EDEX-A1",
+      "status": "finished",
+      "categories": [],
+      "projects": [],
+      "models": [],
+      "uploadedImageIds": [],
+      "uploadedStoragePaths": [],
+      "predictions": [],
+      "feedback": [],
+      "modelsTested": [
+        "Alpha Session Classifier"
+      ],
+      "sessionSettings": {
+        "confidenceThreshold": 0.62
+      },
+      "inFlightOps": 0,
+      "createdAt": "2026-11-15T20:50:22.786Z",
+      "expiresAt": "2026-11-15T21:50:22.786Z",
+      "updatedAt": "2026-11-15T20:50:22.985Z",
+      "finishedAt": "2026-11-15T20:50:22.985Z"
+    },
+    {
+      "sessionId": "sess_91b38e09-a",
+      "tokenHash": "",
+      "nickname": "Participant Beta",
+      "participantCode": "",
+      "status": "finished",
+      "categories": [],
+      "projects": [],
+      "models": [],
+      "uploadedImageIds": [],
+      "uploadedStoragePaths": [],
+      "predictions": [],
+      "feedback": [],
+      "modelsTested": [],
+      "sessionSettings": {
+        "confidenceThreshold": 0.62
+      },
+      "inFlightOps": 0,
+      "createdAt": "2026-11-15T20:42:29.772Z",
+      "expiresAt": "2026-11-15T21:42:29.772Z",
+      "updatedAt": "2026-11-15T20:42:29.838Z",
+      "finishedAt": "2026-11-15T20:42:29.838Z"
+    },
+    {
+      "sessionId": "sess_12146a60-8",
+      "tokenHash": "",
+      "nickname": "Participant Alpha",
+      "participantCode": "EDEX-A1",
+      "status": "finished",
+      "categories": [],
+      "projects": [],
+      "models": [],
+      "uploadedImageIds": [],
+      "uploadedStoragePaths": [],
+      "predictions": [],
+      "feedback": [],
+      "modelsTested": [
+        "Alpha Session Classifier"
+      ],
+      "sessionSettings": {
+        "confidenceThreshold": 0.62
+      },
+      "inFlightOps": 0,
+      "createdAt": "2026-11-15T20:42:29.584Z",
+      "expiresAt": "2026-11-15T21:42:29.584Z",
+      "updatedAt": "2026-11-15T20:42:29.795Z",
+      "finishedAt": "2026-11-15T20:42:29.795Z"
+    },
+    {
+      "sessionId": "sess_d2fb8ad1-1",
+      "tokenHash": "",
+      "nickname": "Participant Beta",
+      "participantCode": "",
+      "status": "finished",
+      "categories": [],
+      "projects": [],
+      "models": [],
+      "uploadedImageIds": [],
+      "uploadedStoragePaths": [],
+      "predictions": [],
+      "feedback": [],
+      "modelsTested": [],
+      "sessionSettings": {
+        "confidenceThreshold": 0.62
+      },
+      "inFlightOps": 0,
+      "createdAt": "2026-11-15T20:35:25.035Z",
+      "expiresAt": "2026-11-15T21:35:25.035Z",
+      "updatedAt": "2026-11-15T20:35:25.105Z",
+      "finishedAt": "2026-11-15T20:35:25.105Z"
+    },
+    {
+      "sessionId": "sess_860ca964-d",
+      "tokenHash": "",
+      "nickname": "Participant Alpha",
+      "participantCode": "EDEX-A1",
+      "status": "finished",
+      "categories": [],
+      "projects": [],
+      "models": [],
+      "uploadedImageIds": [],
+      "uploadedStoragePaths": [],
+      "predictions": [],
+      "feedback": [],
+      "modelsTested": [
+        "Alpha Session Classifier"
+      ],
+      "sessionSettings": {
+        "confidenceThreshold": 0.62
+      },
+      "inFlightOps": 0,
+      "createdAt": "2026-11-15T20:35:24.877Z",
+      "expiresAt": "2026-11-15T21:35:24.877Z",
+      "updatedAt": "2026-11-15T20:35:25.060Z",
+      "finishedAt": "2026-11-15T20:35:25.060Z"
+    }
+  ],
+  "sessionSummaries": [
+    {
+      "summaryId": "sum_0c5ac242",
+      "sessionId": "sess_ff1b3aec-b",
+      "nickname": "Participant Beta",
+      "startedAt": "2026-11-16T19:39:07.575Z",
+      "endedAt": "2026-11-16T19:39:07.643Z",
+      "durationMinutes": 0.1,
+      "categoriesCreated": 2,
+      "imagesAdded": 0,
+      "modelsTrained": 0,
+      "modelsTested": 0,
+      "predictionsCount": 0,
+      "verifiedCorrectCount": 0,
+      "feedbackSubmittedCount": 0,
+      "sharedFeedbackCount": 0,
+      "status": "completed"
+    },
+    {
+      "summaryId": "sum_ce919dfb",
+      "sessionId": "sess_87e93510-b",
+      "nickname": "Participant Alpha",
+      "startedAt": "2026-11-16T19:39:07.386Z",
+      "endedAt": "2026-11-16T19:39:07.593Z",
+      "durationMinutes": 0.1,
+      "categoriesCreated": 2,
+      "imagesAdded": 1,
+      "modelsTrained": 1,
+      "modelsTested": 1,
+      "predictionsCount": 1,
+      "verifiedCorrectCount": 0,
+      "feedbackSubmittedCount": 1,
+      "sharedFeedbackCount": 1,
+      "status": "completed"
+    },
+    {
+      "summaryId": "sum_6966258a",
+      "sessionId": "sess_e1bffe75-a",
+      "startedAt": "2026-11-15T20:50:22.962Z",
+      "endedAt": "2026-11-15T20:50:23.023Z",
+      "durationMinutes": 0.1,
+      "categoriesCreated": 2,
+      "imagesAdded": 0,
+      "modelsTrained": 0,
+      "modelsTested": 0,
+      "predictionsCount": 0,
+      "verifiedCorrectCount": 0,
+      "feedbackSubmittedCount": 0,
+      "sharedFeedbackCount": 0,
+      "status": "completed"
+    },
+    {
+      "summaryId": "sum_08ddc403",
+      "sessionId": "sess_dee26a50-e",
+      "startedAt": "2026-11-15T20:50:22.786Z",
+      "endedAt": "2026-11-15T20:50:22.982Z",
+      "durationMinutes": 0.1,
+      "categoriesCreated": 2,
+      "imagesAdded": 1,
+      "modelsTrained": 1,
+      "modelsTested": 1,
+      "predictionsCount": 1,
+      "verifiedCorrectCount": 0,
+      "feedbackSubmittedCount": 1,
+      "sharedFeedbackCount": 1,
+      "status": "completed"
+    },
+    {
+      "summaryId": "sum_332e560a",
+      "sessionId": "sess_91b38e09-a",
+      "startedAt": "2026-11-15T20:42:29.772Z",
+      "endedAt": "2026-11-15T20:42:29.837Z",
+      "durationMinutes": 0.1,
+      "categoriesCreated": 2,
+      "imagesAdded": 0,
+      "modelsTrained": 0,
+      "modelsTested": 0,
+      "predictionsCount": 0,
+      "verifiedCorrectCount": 0,
+      "feedbackSubmittedCount": 0,
+      "sharedFeedbackCount": 0,
+      "status": "completed"
+    },
+    {
+      "summaryId": "sum_61e9c152",
+      "sessionId": "sess_12146a60-8",
+      "startedAt": "2026-11-15T20:42:29.584Z",
+      "endedAt": "2026-11-15T20:42:29.791Z",
+      "durationMinutes": 0.1,
+      "categoriesCreated": 2,
+      "imagesAdded": 1,
+      "modelsTrained": 1,
+      "modelsTested": 1,
+      "predictionsCount": 1,
+      "verifiedCorrectCount": 0,
+      "feedbackSubmittedCount": 1,
+      "sharedFeedbackCount": 1,
+      "status": "completed"
+    },
+    {
+      "summaryId": "sum_ab6140bb",
+      "sessionId": "sess_d2fb8ad1-1",
+      "startedAt": "2026-11-15T20:35:25.035Z",
+      "endedAt": "2026-11-15T20:35:25.104Z",
+      "durationMinutes": 0.1,
+      "categoriesCreated": 2,
+      "imagesAdded": 0,
+      "modelsTrained": 0,
+      "modelsTested": 0,
+      "predictionsCount": 0,
+      "verifiedCorrectCount": 0,
+      "feedbackSubmittedCount": 0,
+      "sharedFeedbackCount": 0,
+      "status": "completed"
+    },
+    {
+      "summaryId": "sum_830e86ce",
+      "sessionId": "sess_860ca964-d",
+      "startedAt": "2026-11-15T20:35:24.877Z",
+      "endedAt": "2026-11-15T20:35:25.055Z",
+      "durationMinutes": 0.1,
+      "categoriesCreated": 2,
+      "imagesAdded": 1,
+      "modelsTrained": 1,
+      "modelsTested": 1,
+      "predictionsCount": 1,
+      "verifiedCorrectCount": 0,
+      "feedbackSubmittedCount": 1,
+      "sharedFeedbackCount": 1,
+      "status": "completed"
+    }
+  ],
+  "completedNicknames": [
+    {
+      "nicknameId": "nick_9f4152ca",
+      "nickname": "Participant Beta",
+      "sessionId": "sess_ff1b3aec-b",
+      "summaryId": "sum_0c5ac242",
+      "status": "completed",
+      "completedAt": "2026-11-16T19:39:07.643Z"
+    },
+    {
+      "nicknameId": "nick_275081fa",
+      "nickname": "Participant Alpha",
+      "sessionId": "sess_87e93510-b",
+      "summaryId": "sum_ce919dfb",
+      "status": "completed",
+      "completedAt": "2026-11-16T19:39:07.593Z"
+    }
+  ],
+  "pendingSharedProposals": [],
+  "pendingValidations": 0,
+  "failedUploads": 6,
+  "lastAuditAt": null
+}
